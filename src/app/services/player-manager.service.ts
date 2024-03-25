@@ -20,7 +20,7 @@ export class PlayerManagerService {
   }
 
   setTheme():void {
-    this.audio.src = `../../../assets/music themes/${this.theme.name}.mp3`;
+    this.audio.src = `assets/music themes/${this.theme.name}.mp3`;
     this.playAudio();
   }
 

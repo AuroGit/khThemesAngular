@@ -13,7 +13,7 @@
                <img class="cursor" [ngClass]="canSelect ? 'selectable' : ''" src="../../../assets/sprites/select-hand.png" height="25%">
                <div class="char-sprite">
                   <img [src]="char.url">
-                  <img src="../../../assets/sprites/vfx.png" class="fx">
+                  <img src="assets/sprites/vfx.png" class="fx">
                </div>
             </div>
          </div>
@@ -22,7 +22,7 @@
             <span class="hp"><strong>VT</strong> {{enemy.stats.hp}}</span>
             <div class="char-sprite">
                <img [src]="sprites.enemy">
-               <img src="../../../assets/sprites/vfx.png"class="fx">
+               <img src="assets/sprites/vfx.png"class="fx">
             </div>
          </div>
       </main>
@@ -37,20 +37,20 @@
                (click)="showOptions('spells')"
                *ngIf="currentShift.name != 'goofy'">
                MAGIA
-               <img class="show-options" src="../../../assets/icons/play-icon.svg" width="10px">
+               <img class="show-options" src="assets/icons/play-icon.svg" width="10px">
             </button>
             <button class="action" 
                [disabled]="!canPlay"
                (click)="showOptions('skills')"
                *ngIf="currentShift.name == 'goofy'">
                TÉCNICA
-               <img class="show-options" src="../../../assets/icons/play-icon.svg" width="10px">
+               <img class="show-options" src="assets/icons/play-icon.svg" width="10px">
             </button>
             <button class="action" 
                [disabled]="!canPlay"
                (click)="showOptions('items')">
                OBJETO
-               <img class="show-options" src="../../../assets/icons/play-icon.svg" width="10px">
+               <img class="show-options" src="assets/icons/play-icon.svg" width="10px">
             </button>
          </div>
 
