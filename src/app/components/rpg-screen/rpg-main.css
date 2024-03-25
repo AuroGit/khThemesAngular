@@ -1,0 +1,42 @@
+main, .player-team, .enemy, footer, .stats, .char,
+.player-actions, .player-char, .options > * { display: flex; }
+
+main {
+   flex-grow: 1;
+   justify-content: space-between;
+}
+main .player-team, main .enemy {
+   flex-direction: column;
+   justify-content: center;
+}
+main img {
+   object-fit: cover;
+   object-position: 0;
+}
+main .enemy { justify-content: center; align-items: end; }
+.player-team { gap: 20px; }
+.player-team .player-char {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+.cursor { position: absolute; top: 0; }
+.player-team .player-char { transform: translate(var(--x)); }
+.char-sprite {
+   width: var(--sprH);
+   height: var(--sprH);
+   position: relative;
+   overflow: hidden;
+}
+.char-sprite img {
+   width: 500%;
+   aspect-ratio: 1/1;
+   position: absolute;
+   top: 0; left: 0;
+}
+.char-sprite .fx { width: 600%; visibility: hidden; }
+.enemy .char-sprite img:first-child { width: 300%; }
+.enemy .fx {
+   object-position: 0px calc(-5*var(--sprH));
+}

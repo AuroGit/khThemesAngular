@@ -4,7 +4,8 @@ import data from '../../../assets/rpg-data.json';
 @Component({
   selector: 'rpg-screen',
   templateUrl: './rpg-screen.component.html',
-  styleUrls: ['./rpg-screen.component.css', './animations.css']
+  styleUrls: ['./rpg-screen.component.css',
+  './animations.css', './rpg-main.css', './rpg-footer.css']
 })
 export class RpgScreenComponent {
   @Output() resultEvent = new EventEmitter<string>();
