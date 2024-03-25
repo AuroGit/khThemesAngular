@@ -1,0 +1,16 @@
+<div class="world-btn" [id]="world.name"
+   [ngClass]="floatingClass ? 'floating' : ''"
+   [ngClass]="world.type">
+
+   <img [src]="'assets/images/'+ world.name +'-world.webp'">
+   
+   <div class="world-sign">
+      <img *ngIf="world.type == 'default'" [src]="'assets/images/'+ world.name +'-sign.webp'">
+      <img *ngIf="world.type == 'locked'" src="assets/images/darkness.gif" class="darkness">
+      <img *ngIf="world.type == 'secret'" src="assets/images/secret-sign.webp">
+   </div>
+
+   <button class="action" *ngIf="world.type == 'default'" (click)="playTheme()">PLAY</button>
+   <button class="action inv" *ngIf="world.type == 'locked'" (click)="unlockWorld(world.name)">{{'Disipar Oscuridad' | uppercase}}</button>
+   <button class="action inv" *ngIf="world.type == 'secret'" (click)="unlockWorld('')">{{'Desvelar Tema Secreto' | uppercase}}</button>
+</div>

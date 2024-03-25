@@ -1,0 +1,193 @@
+.attack img:not(.fx) {
+   animation: atk .5s steps(4) forwards;
+}
+.physicalDmg .fx {
+   animation: atkDmg-char .5s steps(4) forwards;
+}
+.enemy .physicalDmg .fx {
+   animation: atkDmg-enemy .5s steps(4) forwards;
+}
+
+.dark img:not(.fx) {
+   animation: dark .5s steps(6) forwards;
+}
+.darkDmg .fx {
+   animation: darkDmg .5s steps(6) forwards;
+}
+.fire img:not(.fx) {
+   animation: fire .5s steps(3) forwards;
+}
+.fireDmg .fx {
+   animation: fireDmg .5s steps(3) forwards;
+}
+.elec img:not(.fx) {
+   animation: elec .5s steps(4) forwards;
+}
+.elecDmg .fx {
+   animation: elecDmg .5s steps(6) forwards;
+}
+.ice img:not(.fx) {
+   animation: ice .5s steps(5) forwards;
+}
+.iceDmg .fx {
+   animation: iceDmg .5s steps(4) forwards;
+}
+.fulgor img:not(.fx) {
+   animation: fulgor .6s steps(4) forwards;
+}
+.fulgorDmg .fx {
+   animation: fulgorDmg .6s steps(6) forwards;
+}
+
+.tornado img:not(.fx) {
+   animation: tornado 1s steps(1) forwards;
+}
+.tornadoDmg .fx {
+   animation: tornadoDmg .6s steps(6) forwards;
+}
+.boomerang img:not(.fx) {
+   animation: boomerang .5s steps(4) forwards;
+}
+.boomerangDmg .fx {
+   animation: boomerangDmg .5s steps(4) forwards;
+}
+
+.dmg img:has(+.fx) {
+   animation: blink .25s steps(2) 4 forwards;
+}
+
+.heal img:has(+.fx) {
+   animation: heal .6s steps(5) forwards;
+}
+.hp .fx {
+   animation: healed .5s steps(5) forwards;
+}
+.useItem img:has(+.fx) {
+   object-position: calc(-1*var(--sprH)) 0px;
+}
+.mp .fx {
+   animation: powered .5s steps(5) forwards;
+}
+.both .fx {
+   animation: full .5s steps(5) forwards;
+}
+
+.dead img:has(+.fx) {
+   animation: dead .3s steps(3) infinite;
+}
+.enemy.dead img:not(.fx) {
+   animation: enemyDead 1s 1s forwards;
+}
+
+@keyframes atk {
+   from { object-position: 0px calc(-1*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-1*var(--sprH)); }
+}
+@keyframes atkDmg-char {
+   from { object-position: 0px calc(-3*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-3*var(--sprH)); }
+}
+@keyframes atkDmg-enemy {
+   from { object-position: 0px calc(-5*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-5*var(--sprH)); }
+}
+
+@keyframes dark {
+   from { object-position: 0px calc(-2*var(--sprH)); }
+   to { object-position: calc(-6*var(--sprH)) calc(-2*var(--sprH)); }
+}
+@keyframes darkDmg {
+   from { object-position: 0px calc(-4*var(--sprH)); }
+   to { object-position: calc(-6*var(--sprH)) calc(-4*var(--sprH)); }
+}
+@keyframes fire {
+   0% { object-position: 0px calc(-2*var(--sprH)); }
+   50% { object-position: calc(-3*var(--sprH)) calc(-2*var(--sprH)); }
+   100% { object-position: 0px calc(-2*var(--sprH)); }
+}
+@keyframes fireDmg {
+   0% { object-position: 0px calc(-6*var(--sprH)); }
+   50% { object-position: calc(-3*var(--sprH)) calc(-6*var(--sprH)); }
+   100% { object-position: 0px calc(-6*var(--sprH)); }
+}
+@keyframes elec {
+   from { object-position: 0px calc(-3*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-3*var(--sprH)); }
+}
+@keyframes elecDmg {
+   from { object-position: 0px calc(-7*var(--sprH)); }
+   to { object-position: calc(-6*var(--sprH)) calc(-7*var(--sprH)); }
+}
+@keyframes ice {
+   from { object-position: 0px calc(-4*var(--sprH)); }
+   to { object-position: calc(-5*var(--sprH)) calc(-4*var(--sprH)); }
+}
+@keyframes iceDmg {
+   from { object-position: 0px calc(-8*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-8*var(--sprH)); }
+}
+@keyframes fulgor {
+   0% { object-position: 0px calc(-4*var(--sprH)); }
+   50% { object-position: calc(-4*var(--sprH)) calc(-4*var(--sprH)); }
+   100% { object-position: 0px calc(-4*var(--sprH)); }
+}
+@keyframes fulgorDmg {
+   from { object-position: 0px calc(-9*var(--sprH)); }
+   to { object-position: calc(-6*var(--sprH)) calc(-9*var(--sprH)); }
+}
+
+@keyframes tornado {
+   0% { object-position: 0px calc(-2*var(--sprH)); }
+   30% { object-position: 0px calc(-2*var(--sprH)); }
+   40% { object-position: calc(-1*var(--sprH)) calc(-2*var(--sprH)); }
+   50% { object-position: calc(-2*var(--sprH)) calc(-2*var(--sprH)); }
+   60% { object-position: calc(-3*var(--sprH)) calc(-2*var(--sprH)); }
+   70% { object-position: 0px calc(-3*var(--sprH)); }
+   80% { object-position: calc(-1*var(--sprH)) calc(-3*var(--sprH)); }
+   90% { object-position: calc(-2*var(--sprH)) calc(-3*var(--sprH)); }
+   100% { object-position: calc(-3*var(--sprH)) calc(-3*var(--sprH)); }
+}
+@keyframes tornadoDmg {
+   from { object-position: 0px calc(-10*var(--sprH)); }
+   to { object-position: calc(-6*var(--sprH)) calc(-10*var(--sprH)); }
+}
+@keyframes boomerang {
+   from { object-position: 0px calc(-4*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-4*var(--sprH)); }
+}
+@keyframes boomerangDmg {
+   from { object-position: 0px calc(-11*var(--sprH)); }
+   to { object-position: calc(-4*var(--sprH)) calc(-11*var(--sprH)); }
+}
+
+@keyframes blink {
+   from { visibility: hidden; }
+   to { visibility: visible; }
+}
+
+@keyframes heal {
+   from { object-position: 0px calc(-2*var(--sprH)); }
+   to { object-position: calc(-5*var(--sprH)) calc(-2*var(--sprH)); }
+}
+@keyframes healed {
+   from { object-position: 0px calc(-1*var(--sprH)); }
+   to { object-position: calc(-5*var(--sprH)) calc(-1*var(--sprH)); }
+}
+@keyframes powered {
+   from { object-position: 0px calc(-2*var(--sprH)); }
+   to { object-position: calc(-5*var(--sprH)) calc(-2*var(--sprH)); }
+}
+@keyframes full {
+   from { object-position: 0px 0px; }
+   to { object-position: calc(-5*var(--sprH)) 0px; }
+}
+
+@keyframes dead {
+   from { object-position: calc(-2*var(--sprH)) 0px; }
+   to { object-position: calc(-5*var(--sprH)) 0px; }
+}
+@keyframes enemyDead {
+   0% { filter: brightness(0); }
+   50% { filter: brightness(100); opacity: 1; }
+   100% { opacity: 0; }
+}

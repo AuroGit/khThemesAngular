@@ -1,0 +1,246 @@
+* { --sprH: 150px; }
+
+@keyframes fadeIn {
+   from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes fadeOut {
+   from { opacity: 1; } to { opacity: 0; }
+}
+
+.rpg-container {
+   opacity: 0;
+   position: absolute;
+   inset: 0;
+   background-color: #252525;
+   padding: 20px;
+   display: grid;
+   place-items: center;
+   animation: fadeIn 1s .5s forwards;
+}
+.rpg-container.fadeout { animation: fadeOut 1s forwards; }
+
+.screen {
+   font-family: sans-serif;
+   background-color: #343f2f;
+   background-image: url('../../../assets/sprites/darkness-bg.png');
+   background-size: cover;
+   width: min(1000px, 100%);
+   aspect-ratio: 4/3;
+   padding: 20px;
+   border-radius: 5px;
+   display: flex;
+   flex-direction: column;
+   box-shadow: inset 0 0 10px 1px #000;
+}
+.screen > * { padding: 10px; }
+
+.info {
+   text-transform: uppercase;
+   text-align: center;
+   background-image: linear-gradient(to right, transparent, #c82, transparent);
+}
+
+/*Main*/
+main, .player-team, .enemy, footer, .stats, .char,
+.player-actions, .player-char, .options > * { display: flex; }
+
+main {
+   flex-grow: 1;
+   justify-content: space-between;
+}
+main .player-team, main .enemy {
+   flex-direction: column;
+   justify-content: center;
+}
+main img {
+   object-fit: cover;
+   object-position: 0;
+}
+main .enemy { justify-content: center; align-items: end; }
+.player-team { gap: 20px; }
+.player-team .player-char {
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+}
+.cursor { position: absolute; top: 0; }
+.player-team .player-char { transform: translate(var(--x)); }
+.char-sprite {
+   width: var(--sprH);
+   height: var(--sprH);
+   position: relative;
+   overflow: hidden;
+}
+.char-sprite img {
+   width: 500%;
+   aspect-ratio: 1/1;
+   position: absolute;
+   top: 0; left: 0;
+}
+.char-sprite .fx { width: 600%; visibility: hidden; }
+.enemy .char-sprite img:first-child { width: 300%; }
+.enemy .fx {
+   object-position: 0px calc(-5*var(--sprH));
+}
+
+/*footer*/
+main, footer { width: min(1000px, 100%); }
+footer {
+   border-radius: 10px;
+   background-image: linear-gradient(to right, #a40, #620);
+   gap: 10px;
+   position: relative;
+}
+
+.cancel-select {
+   position: absolute;
+   bottom: 100%; left: 50%;
+   transform: translateX(-50%);
+   background: none;
+   background-image: linear-gradient(transparent, #c00);
+   border: none;
+   color: #fff;
+   padding: 10px 20px; padding-bottom: 5px;
+   border-radius: 10px 10px 0 0;
+   transition: background .2s;
+}
+.cancel-select:hover { background-color: #c00; }
+
+.player-actions {
+   flex-direction: column;
+   justify-content: space-between;
+   width: max(100px, 25%);
+}
+.player-actions .action {
+   position: relative;
+   padding: 5px 10px;
+   border-radius: 5px;
+   background-color: #830;
+   color: #fff;
+   border: solid 1px #fff2;
+   transition: background .2s;
+}
+.player-actions .action:not(:disabled):hover {
+   background-color: #620;
+}
+.action .show-options {
+   position: absolute;
+   top: 50%;
+   right: 5px;
+   transform: translateY(-50%);
+   opacity: 0;
+   transition: opacity .2s;
+}
+.action:not(:disabled):hover .show-options { opacity: 1; }
+
+footer .options-container { flex-grow: 1; }
+.options-container .options {
+   display: grid; gap: 10px;
+   height: 100%;
+   max-width: fit-content;
+   padding: 10px;
+   border-radius: 5px;
+   border: solid 1px #fff2;
+   background-color: #830;
+}
+.options > * {
+   justify-content: space-between;
+   cursor: pointer;
+   gap: 20px;
+}
+.options > *:hover >:first-child { text-decoration: underline; }
+
+.stats {
+   flex-direction: column;
+   justify-content: space-evenly;
+   gap: 10px;
+}
+.stats .char {
+   align-items: center;
+   gap: 20px;
+   padding: 5px 10px;
+   border-radius: 20px;
+   background-image: linear-gradient(to right, #a40, transparent);
+}
+.char .mp { margin-inline: auto; }
+.char > div { width: max-content; }
+.char-name { font-weight: 400; }
+.char .hp.full { color: #afa; }
+.char .mp.full { color: #bbf; }
+.char .hp.low { color: #fd0; }
+.char .mp.low { color: #f8f; }
+.char.dead * { color: #888!important; }
+.char strong, .char .hp, .char .mp { color: #fff; }
+
+.cursor { visibility: hidden; }
+.player-char:has( .selectable ) { cursor: none; }
+.player-char:hover .selectable.cursor { visibility: visible; }
+.current { color: #8ff; }
+.action:disabled { opacity: .5; cursor: default; }
+.disabled { pointer-events: none; color: #888; }
+
+.player-char.physic { filter: hue-rotate(-50deg); }
+.player-char.magic { filter: hue-rotate(200deg); }
+.player-char.full { filter: invert(); }
+
+#endgame-modal {
+   position: absolute;
+   inset: 0;
+   display: flex;
+   backdrop-filter: blur(5px);
+}
+.modal-msg {
+   display: grid;
+   place-items: center;
+   gap: 25px;
+   margin: auto;
+   background-image: linear-gradient(to right, #446, #234);
+   padding: 20px;
+   border-radius: 10px;
+   box-shadow: 0 0 10px #15151d;
+   border: solid 4px #3f385f;
+}
+.modal-msg button {
+   padding: 10px;
+   border-radius: 10px;
+   background-color: #3f385f;
+   border: none;
+   color: #fff;
+   width: 100%;
+   font-weight: 800;
+   letter-spacing: 2pt;
+   transition-property: box-shadow, background, color;
+   transition-duration: .5s;
+}
+.modal-msg button:hover {
+   box-shadow: 0 0 5px #fc8, 0 0 10px #fff;
+   background-color: #fff;
+   color: #000;
+}
+
+@media screen and (orientation:portrait) {
+   * { --sprH: 100px; }
+   footer { flex-direction: column; }
+   .player-actions {
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+   }
+   .player-actions .action { flex: 1 1; }
+
+   .options-container .options {
+      font-size: 1em;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 10px;
+      width: 100%;
+      max-width: unset;
+   }
+   .options:has(.opt.skill) { grid-template-columns: 1fr; }
+   .options .opt {
+      gap: 5px;
+      min-width: fit-content;
+      justify-content: center;
+   } .opt .spell-cost { font-size: .8rem; }
+}

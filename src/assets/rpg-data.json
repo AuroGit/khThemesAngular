@@ -1,0 +1,114 @@
+[
+   {
+      "id": "default",
+      "bgUrl": "assets/sprites/bgs/defaultBg.png",
+      "team": [
+         {
+            "name": "donald",
+            "url": "assets/sprites/donald.png",
+            "spells": [
+               {"name": "Cura", "effect": "hp", "type": "health",
+               "cost": 18, "info": "Recupera VT de un miembro del grupo"},
+               {"name": "Rayo", "effect": "elec", "type": "damage",
+               "cost": 7, "info": "Hechizo elemental con daño Eléctrico"},
+               {"name": "Fulgor", "effect": "fulgor", "type": "damage",
+               "cost": 25, "info": "Hechizo de magia arcana muy poderoso"}
+            ],
+            "stats": {
+               "hp": 540, "mp": 100,
+               "atk": 66, "dfs": 65,
+               "mgAtk": 132, "mgDfs": 130,
+               "weakness": ["darkDmg", "fireDmg", "phyDmg"],
+               "strength": ["iceDmg", "elecDmg"]
+            }
+         },
+         {
+            "name": "sora",
+            "url": "assets/sprites/sora.png",
+            "spells": [
+               {"name": "Piro", "effect": "fire", "type": "damage",
+               "cost": 40, "info": "Hechizo elemental con daño de Fuego"},
+               {"name": "Rayo", "effect": "elec", "type": "damage",
+               "cost": 30, "info": "Hechizo elemental con daño Eléctrico"},
+               {"name": "Hielo", "effect": "ice", "type": "damage",
+               "cost": 20, "info": "Hechizo elemental con daño de Frío"}
+            ],
+            "stats": {
+               "hp": 950, "mp": 160,
+               "atk": 100, "dfs": 75,
+               "mgAtk": 100, "mgDfs": 75,
+               "weakness": ["phyDmg", "darkDmg"],
+               "strength": ["fireDmg"]
+            }
+         },
+         {
+            "name": "goofy",
+            "url": "assets/sprites/goofy.png",
+            "skills": [
+               {"name": "Goofy Tornado", "effect": "tornado", "type": "damage",
+               "cost": 15, "power": 100, "info": "Golpea al enemigo con un Tornado"},
+               {"name": "Escudomerang", "effect": "boomerang", "type": "damage",
+               "cost": 10, "power": 75, "info": "Golpea al enemigo lanzando el escudo"}
+            ],
+            "stats": {
+               "hp": 780, "mp": 50,
+               "atk": 61, "dfs": 63,
+               "mgAtk": 90, "mgDfs": 33,
+               "weakness": ["fireDmg", "elecDmg", "iceDmg"],
+               "strength": ["darkDmg", "phyDmg"]
+            }
+         }
+      ],
+      "enemy": {
+         "name": "encapuchado",
+         "url": "assets/sprites/enemy.png",
+         "moveset": [
+            {
+               "move": "Ataque",
+               "type": "hit",
+               "effect": "phyDmg"
+            },
+            {
+               "move": "Oscuridad",
+               "type": "magic",
+               "effect": "darkDmg"
+            },
+            {
+               "move": "Especial",
+               "type": "both",
+               "effect": "phyDmg+darkDmg"
+            }
+         ],
+         "stats": {
+            "hp": 1200, "mp": 350,
+            "atk": 200, "dfs": 30,
+            "mgAtk": 250, "mgDfs": 50,
+            "weakness": ["physic"],
+            "strength": ["darkDmg"]
+         }
+      },
+      "items": [
+         {
+            "name": "Pocion",
+            "effect": "hp",
+            "amount": 5,
+            "power": 0.5,
+            "info": "Restablece el 50% de la VT máxima"
+         },
+         {
+            "name": "Eter",
+            "effect": "mp",
+            "amount": 3,
+            "power": 0.5,
+            "info": "Restablece el 50% de los PM máximos"
+         },
+         {
+            "name": "Elixir",
+            "effect": "both",
+            "amount": 3,
+            "power": 1,
+            "info": "Restablece toda la VT y el PM"
+         }
+      ]
+   }
+]

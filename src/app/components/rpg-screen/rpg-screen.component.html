@@ -1,0 +1,152 @@
+<div id="rpg" class="rpg-container">
+   <div class="screen">
+      <header class="info">{{info}}</header>
+
+      <main>
+         <div class="player-team">
+            <div [id]="char.name" class="player-char"
+            [ngClass]="team[i].protection"
+            [ngClass]="team[i].stats.hp == 0 ? 'dead' : ''"
+            (click)="selectChar(char)"
+            [ngStyle]="{'--x':(team.length-(i+1))*10+'px'}"
+            *ngFor="let char of rpgData.team; let i = index">
+               <img class="cursor" [ngClass]="canSelect ? 'selectable' : ''" src="../../../assets/sprites/select-hand.png" height="25%">
+               <div class="char-sprite">
+                  <img [src]="char.url">
+                  <img src="../../../assets/sprites/vfx.png" class="fx">
+               </div>
+            </div>
+         </div>
+   
+         <div class="enemy" [ngClass]="enemy.stats.hp == 0 ? 'dead' : ''">
+            <span class="hp"><strong>VT</strong> {{enemy.stats.hp}}</span>
+            <div class="char-sprite">
+               <img [src]="sprites.enemy">
+               <img src="../../../assets/sprites/vfx.png"class="fx">
+            </div>
+         </div>
+      </main>
+
+      <footer>
+         <div class="player-actions">
+            <button class="action" 
+               [disabled]="!canPlay"
+               (click)="attack()">ATACAR</button>
+            <button class="action" 
+               [disabled]="!canPlay"
+               (click)="showOptions('spells')"
+               *ngIf="currentShift.name != 'goofy'">
+               MAGIA
+               <img class="show-options" src="../../../assets/icons/play-icon.svg" width="10px">
+            </button>
+            <button class="action" 
+               [disabled]="!canPlay"
+               (click)="showOptions('skills')"
+               *ngIf="currentShift.name == 'goofy'">
+               TÉCNICA
+               <img class="show-options" src="../../../assets/icons/play-icon.svg" width="10px">
+            </button>
+            <button class="action" 
+               [disabled]="!canPlay"
+               (click)="showOptions('items')">
+               OBJETO
+               <img class="show-options" src="../../../assets/icons/play-icon.svg" width="10px">
+            </button>
+         </div>
+
+         <div class="options-container"
+         [ngStyle]="{'visibility' : currentShift.name == 'xehanort' ? 'hidden' : ''}">
+            <div class="options spells" *ngIf="options == 'spells'">
+               <div class="opt spell" [ngClass]="spell.cost > currentShift.stats.mp ? 'disabled':''"
+               (click)="castSpell(spell)" (mouseover)="onHover(spell.info)" (mouseleave)="onLeave()"
+               *ngFor="let spell of currentShift.spells">
+                  <span class="spell-name">{{spell.name}}</span>
+                  <span class="spell-cost">{{spell.cost}} PM</span>
+               </div>
+            </div>
+
+            <div class="options skills" *ngIf="options == 'skills'">
+               <div class="opt skill" [ngClass]="skill.cost > currentShift.stats.mp ? 'disabled':''"
+               (click)="useSkill(skill)" (mouseover)="onHover(skill.info)" (mouseleave)="onLeave()"
+               *ngFor="let skill of currentShift.skills">
+                  <span class="spell-name">{{skill.name}}</span>
+                  <span class="spell-cost">{{skill.cost}} PM</span>
+               </div>
+            </div>
+
+            <div class="options items" *ngIf="options == 'items'">
+               <div class="opt item" [ngClass]="item.amount == 0 ? 'disabled':''"
+               (click)="useItem(item)" (mouseover)="onHover(item.info)" (mouseleave)="onLeave()"
+               *ngFor="let item of rpgData.items">
+                  <span class="item-name">{{item.name}}</span>
+                  <span class="item-amount">x{{item.amount}}</span>
+               </div>
+            </div>
+         </div>
+         
+         <div class="stats">
+            <div [id]="team[0].name" class="char"
+            [ngClass]="{
+               'current': team[0].name == currentShift.name,
+               'dead': team[0].stats.hp == 0
+            }">
+               <div class="hp" [ngClass]="{
+                  'full': team[0].stats.hp == team[0].stats.maxHp,
+                  'low': team[0].stats.hp < team[0].stats.maxHp / 2
+               }"><strong>VT </strong>{{team[0].stats.hp}}</div>
+               <div class="mp" [ngClass]="{
+                  'full': team[0].stats.mp == team[0].stats.maxMp,
+                  'low': team[0].stats.mp < team[0].stats.maxMp / 2
+               }"><strong>PM </strong>{{team[0].stats.mp}}</div>
+               <h3 class="char-name">{{team[0].name | titlecase}}</h3>
+            </div>
+
+            <div [id]="team[1].name" class="char"
+            [ngClass]="{
+               'current': team[1].name == currentShift.name,
+               'dead': team[1].stats.hp == 0
+            }">
+            <div class="hp" [ngClass]="{
+               'full':team[1].stats.hp == team[1].stats.maxHp,
+               'low':team[1].stats.hp < team[1].stats.maxHp / 2
+            }"><strong>VT </strong>{{team[1].stats.hp}}</div>
+            <div class="mp" [ngClass]="{
+               'full':team[1].stats.mp == team[1].stats.maxMp,
+               'low':team[1].stats.mp < team[1].stats.maxMp / 2
+            }"><strong>PM </strong>{{team[1].stats.mp}}</div>
+               <h3 class="char-name">{{team[1].name | titlecase}}</h3>
+            </div>
+
+            <div [id]="team[2].name" class="char"
+            [ngClass]="{
+               'current': team[2].name == currentShift.name,
+               'dead': team[2].stats.hp == 0
+            }">
+            <div class="hp" [ngClass]="{
+               'full':team[2].stats.hp == team[2].stats.maxHp,
+               'low':team[2].stats.hp < team[2].stats.maxHp / 2
+            }"><strong>VT </strong>{{team[2].stats.hp}}</div>
+            <div class="mp" [ngClass]="{
+               'full':team[2].stats.mp == team[2].stats.maxMp,
+               'low':team[2].stats.mp < team[2].stats.maxMp / 2
+            }"><strong>PM </strong>{{team[2].stats.mp}}</div>
+               <h3 class="char-name">{{team[2].name | titlecase}}</h3>
+            </div>
+         </div>
+
+         <button class="cancel-select"
+         *ngIf="canSelect"
+         (click)="cancelSelect()">
+            CANCELAR
+         </button>
+      </footer>
+
+      <div id="endgame-modal" *ngIf="result">
+         <div class="modal-msg" >
+            <h2 *ngIf="result == 'won'">Has vencido a la Oscuridad</h2>
+            <h2 *ngIf="result == 'lost'">La Oscuridad ha podido contigo</h2>
+            <button (click)="endgame()">VOLVER</button>
+         </div>
+      </div>
+   </div>
+</div>

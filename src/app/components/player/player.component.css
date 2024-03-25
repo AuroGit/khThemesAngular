@@ -1,0 +1,40 @@
+input, button { cursor: pointer; }
+button { background-color: transparent; border: none; }
+
+#title { text-align: center; }
+
+.controls, .controls > div {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   gap: 10px;
+   flex-wrap: nowrap;
+   margin: auto;
+}
+.controls, .time { width: 100%; max-width: 500px; }
+.controls img { pointer-events: none; }
+
+#play { width: 70px; }
+
+.time { margin-inline: auto; }
+
+#progress {
+   height: 5px;
+   display: block;
+   width: 100%;
+   margin: 10px 0;
+}
+.duration { float: right; }
+
+/* #volume { position: relative; } */
+#volume:hover input, #volume input:hover { visibility: visible; }
+#volume input {
+   position: absolute;
+   top: 110%;
+   left: 50%;
+   width: 300%;
+   visibility: hidden;
+   transform: translateX(-50%);
+   transition-property: visibility;
+   transition-duration: .25s;
+}
