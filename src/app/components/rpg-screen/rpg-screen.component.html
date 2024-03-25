@@ -10,7 +10,8 @@
             (click)="selectChar(char)"
             [ngStyle]="{'--x':(team.length-(i+1))*10+'px'}"
             *ngFor="let char of rpgData.team; let i = index">
-               <img class="cursor" [ngClass]="canSelect ? 'selectable' : ''" src="../../../assets/sprites/select-hand.png" height="25%">
+               <img class="cursor" [ngClass]="canSelect ? 'selectable' : ''"
+                  src="assets/sprites/select-hand.png" height="25%">
                <div class="char-sprite">
                   <img [src]="char.url">
                   <img src="assets/sprites/vfx.png" class="fx">
