@@ -22,7 +22,7 @@ footer {
 
 .player-actions {
    flex-direction: column;
-   justify-content: space-between;
+   justify-content: space-evenly;
    width: max(100px, 25%);
 }
 .player-actions .action {

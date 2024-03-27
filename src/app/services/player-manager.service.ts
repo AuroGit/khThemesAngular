@@ -17,6 +17,9 @@ export class PlayerManagerService {
   constructor() {
     this.audio = new Audio();
     this.audio.volume = .2;
+    this.audio.onloadeddata = () => {
+      this.duration = this.formatTime(this.audio.duration);
+    };
   }
 
   setTheme():void {
@@ -43,7 +46,6 @@ export class PlayerManagerService {
 
   playAudio():void {
     this.audio.play();    
-    setTimeout(() => this.duration = this.formatTime(this.audio.duration), 100);
     this.timeUpdate = setInterval(() => this.seekUpdate(), 50);
   }
 

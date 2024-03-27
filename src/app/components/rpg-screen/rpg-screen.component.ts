@@ -5,7 +5,8 @@ import data from '../../../assets/rpg-data.json';
   selector: 'rpg-screen',
   templateUrl: './rpg-screen.component.html',
   styleUrls: ['./rpg-screen.component.css',
-  './animations.css', './rpg-main.css', './rpg-footer.css']
+    './animations.css', './rpg-main.css',
+    './rpg-footer.css']
 })
 export class RpgScreenComponent {
   @Output() resultEvent = new EventEmitter<string>();
@@ -48,10 +49,7 @@ export class RpgScreenComponent {
       this.rpgData.enemy
     ]
     this.shiftArr.sort(() => Math.random() - .5);
-    this.currentShift = this.shiftArr[0];
-    console.log(this.shiftArr);
-    console.log(this.currentShift.name);
-    
+    this.currentShift = this.shiftArr[0];    
     this.team = [...this.rpgData.team];
     this.team.map((char:any) => {      
       char.isDead = false;
@@ -364,7 +362,7 @@ export class RpgScreenComponent {
           target.forEach((char:any) => {
             if (char.protection == 'unprotected' || char.protection == 'magic') {
               char.stats.hp -= this.enemy.stats.atk - char.stats.dfs;
-              if (char.stats.hp < 0) {
+              if (char.stats.hp <= 0) {
                 char.stats.hp = 0;
                 char.isDead = true;
               }
@@ -402,7 +400,7 @@ export class RpgScreenComponent {
 
             if (char.protection == 'unprotected' || char.protection == 'physic') {
               char.stats.hp -= this.enemy.stats.mgAtk - char.stats.mgDfs;
-              if (char.stats.hp < 0) {
+              if (char.stats.hp <= 0) {
                 char.stats.hp = 0;
                 char.isDead = true;
               }
@@ -430,33 +428,40 @@ export class RpgScreenComponent {
 
   nextShift():void {
     this.info = this.savedInfo;
-    //Endgame
     let teamAlive = this.team.filter((char:any) => {
       if (!char.isDead) return char;
     });
     
+    
     if (teamAlive.length == 0 || this.enemy.stats.hp == 0) {
-      if (teamAlive.length == 0) { this.result = 'lost' }
+      //Endgame
+      if (teamAlive.length == 0) {
+        setTimeout(() => {
+          this.result = 'lost';
+          return;
+        }, 1000);
+      }
       if (this.enemy.stats.hp == 0) {
         setTimeout(() => {
           this.result = 'won';
           return;
         }, 2000);
       }
-    }
-
-    // Still Alive > Next Shift
-    this.canPlay = true;
-    let nextIndex = this.shiftArr.indexOf(this.currentShift) < 3 ?
-      this.shiftArr.indexOf(this.currentShift) + 1 : 0;
-    while (this.shiftArr[nextIndex].isDead) {
-      nextIndex < 3 ? nextIndex++ : nextIndex = 0;
-    }
-    this.currentShift = this.shiftArr[nextIndex];
-    if (this.currentShift == this.rpgData.enemy
-      && this.enemy.stats.hp > 0) {
-        this.enemyAttack();
-    }
+    } else {
+      // Still Alive > Next Shift
+      this.canPlay = true;
+      let nextIndex = this.shiftArr.indexOf(this.currentShift) < 3 ?
+        this.shiftArr.indexOf(this.currentShift) + 1 : 0;
+        
+      while (this.shiftArr[nextIndex].isDead) {
+        nextIndex < 3 ? nextIndex++ : nextIndex = 0;
+      }
+      this.currentShift = this.shiftArr[nextIndex];
+      if (this.currentShift == this.rpgData.enemy
+        && this.enemy.stats.hp > 0) {
+          this.enemyAttack();
+      }
+    }    
   }
 
   endgame():void {

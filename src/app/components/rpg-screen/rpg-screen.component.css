@@ -78,14 +78,13 @@
 @media screen and (orientation:portrait) {
    * { --sprH: 100px; }
    footer { flex-direction: column; }
-   .player-actions {
+   footer .player-actions {
       flex-direction: row;
-      justify-content: space-between;
       width: 100%;
    }
    .player-actions .action { flex: 1 1; }
 
-   .options-container .options {
+   footer .options-container .options {
       font-size: 1em;
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -93,7 +92,7 @@
       width: 100%;
       max-width: unset;
    }
-   .options:has(.opt.skill) { grid-template-columns: 1fr; }
+   footer .options:has(.opt.skill) { grid-template-columns: 1fr 1fr; }
    .options .opt {
       gap: 5px;
       min-width: fit-content;
